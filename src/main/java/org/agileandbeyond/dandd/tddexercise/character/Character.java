@@ -52,6 +52,9 @@ public class Character {
 		case TORSO:
 			this.armorSet.setMail(armor);
 			break;
+		case WAIST:
+			this.armorSet.setBelt(armor);
+			break;
 		case WRISTS:
 			this.armorSet.setGauntlets(armor);
 			break;
@@ -114,6 +117,13 @@ public class Character {
 		return wearingBoots;
 	}
 
+	public boolean isWearingBelt() {
+		boolean wearingBelt = false;
+		if (this.armorSet.belt != null) {
+			wearingBelt = true;
+		}
+		return wearingBelt;
+	}
 
 	public Alignment getAlignment() {
 		return alignment;
@@ -282,6 +292,7 @@ public class Character {
 		private Armor helmet;
 		private Armor boots;
 		private Armor gauntlets;
+		private Armor belt;
 		private Shield shield;
 
 		public void setMail(Armor mail) {
@@ -298,6 +309,9 @@ public class Character {
 		}
 		public void setShield(Shield shield) {
 			this.shield = shield;
+		}
+		public void setBelt(Armor belt) {
+			this.belt = belt;
 		}
 	}
 

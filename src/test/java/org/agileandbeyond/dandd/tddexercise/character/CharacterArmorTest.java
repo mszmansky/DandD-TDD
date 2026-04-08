@@ -9,6 +9,7 @@ import org.agileandbeyond.dandd.tddexercise.equipment.armor.Gauntlets;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.Helmet;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.MailArmor;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.Shield;
+import org.agileandbeyond.dandd.tddexercise.equipment.armor.Belt;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.BroadSword;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.Dagger;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.Weapon;
@@ -34,7 +35,23 @@ public class CharacterArmorTest {
 		
 		assertEquals(1, Math.abs(armorClassBefore - grog.getArmorClass()));
 	}
+
+	@Test
+	public void shouldDonBeltAndIncreaseArmorClassByOne(){
+		int armorClassBefore = grog.getArmorClass();
+		Armor belt = createBelt();
+		grog.donArmor(belt);
+		
+		assertEquals(1, Math.abs(armorClassBefore - grog.getArmorClass()));
+	}
 	
+	@Test
+	public void shouldDonBeltAndBeABeltWearer() {
+		grog.donArmor(createBelt());
+		
+		assertTrue(grog.isWearingBelt());
+	}
+
 	@Test
 	public void shouldDonHelmetAndBeAHelmetWearer() {
 		grog.donArmor(createHelmet());
@@ -152,5 +169,10 @@ public class CharacterArmorTest {
 	private Armor createGauntlets() {
 		Gauntlets gauntlets = new Gauntlets();
 		return gauntlets;
+	}
+
+	private Armor createBelt() {
+		Belt belt = new Belt();
+		return belt;
 	}
 }
