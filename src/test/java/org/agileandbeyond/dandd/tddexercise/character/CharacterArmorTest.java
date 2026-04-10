@@ -10,6 +10,7 @@ import org.agileandbeyond.dandd.tddexercise.equipment.armor.Helmet;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.MailArmor;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.Shield;
 import org.agileandbeyond.dandd.tddexercise.equipment.armor.Belt;
+import org.agileandbeyond.dandd.tddexercise.equipment.armor.Gloves;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.BroadSword;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.Dagger;
 import org.agileandbeyond.dandd.tddexercise.equipment.weaponry.Weapon;
@@ -53,6 +54,11 @@ public class CharacterArmorTest {
 	}
 
 	@Test
+	public void shouldNotHaveBeltOutOfTheBox() {
+		assertFalse(grog.isWearingBelt());
+	}
+
+	@Test
 	public void shouldDonHelmetAndBeAHelmetWearer() {
 		grog.donArmor(createHelmet());
 		
@@ -77,7 +83,7 @@ public class CharacterArmorTest {
 	}
 	
 	@Test
-	public void shouldDonGauntletsAndHaveSweetArmoredHands(){
+	public void shouldDonGauntletsAndHaveSweetArmoredWrists(){
 		grog.donArmor(createGauntlets());
 		
 		assertTrue(grog.isWearingGauntlets());
@@ -86,6 +92,26 @@ public class CharacterArmorTest {
 	@Test
 	public void shouldNotHaveGauntletsOutOfTheBox(){
 		assertFalse(grog.isWearingGauntlets());
+	}
+
+	@Test
+	public void shouldNotHaveGlovesOutOfTheBox() {
+		assertFalse(grog.isWearingGloves());
+	}
+
+	@Test
+	public void shouldDonGlovesAndHaveProtectedDigits() {
+		grog.donArmor(createGloves());
+
+		assertTrue(grog.isWearingGloves());
+	}
+
+	@Test
+	public void shouldDonGlovesAndIncreaseArmorClassByOne() {
+		int armorClassBefore = grog.getArmorClass();
+		grog.donArmor(createGloves());
+		
+		assertEquals(1, Math.abs(armorClassBefore - grog.getArmorClass()));
 	}
 	
 	@Test
@@ -174,5 +200,10 @@ public class CharacterArmorTest {
 	private Armor createBelt() {
 		Belt belt = new Belt();
 		return belt;
+	}
+
+	private Armor createGloves() {
+		Gloves gloves = new Gloves();
+		return gloves;
 	}
 }

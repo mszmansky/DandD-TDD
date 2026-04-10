@@ -61,6 +61,9 @@ public class Character {
 		case FEET:
 			this.armorSet.setBoots(armor);
 			break;
+		case HANDS:
+			this.armorSet.setGloves(armor);
+			break;
 		default:
 			break;
 		}
@@ -123,6 +126,14 @@ public class Character {
 			wearingBelt = true;
 		}
 		return wearingBelt;
+	}
+
+	public boolean isWearingGloves() {
+		boolean wearingGloves = false;
+		if (this.armorSet.gloves != null) {
+			wearingGloves = true;
+		}
+		return wearingGloves;
 	}
 
 	public Alignment getAlignment() {
@@ -293,6 +304,7 @@ public class Character {
 		private Armor boots;
 		private Armor gauntlets;
 		private Armor belt;
+		private Armor gloves;
 		private Shield shield;
 
 		public void setMail(Armor mail) {
@@ -312,6 +324,9 @@ public class Character {
 		}
 		public void setBelt(Armor belt) {
 			this.belt = belt;
+		}
+		public void setGloves(Armor gloves){
+			this.gloves = gloves;
 		}
 	}
 
